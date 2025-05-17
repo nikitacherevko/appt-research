@@ -3,93 +3,218 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Business Calendar Survey</title>
-  <style>
-    body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: auto; }
-    h1 { font-size: 1.8rem; }
-    label, button { display: block; margin: 1rem 0 0.5rem; }
-    input, textarea, select, button { width: 100%; padding: 0.6rem; font-size: 1rem; }
-    button { background: #2d6cdf; color: white; border: none; cursor: pointer; }
-  </style>
+  <title data-i18n="title">Business Scheduling Survey</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <h1 data-i18n="title">Help Us Improve Scheduling for Your Business</h1>
-  <form id="survey-form">
-    <label for="business-type" data-i18n="q1">What type of business do you run?</label>
-    <input type="text" id="business-type" name="business_type" required />
+<body class="bg-gray-900 text-gray-100 min-h-screen p-6 flex items-center justify-center">
+<div class="w-full max-w-2xl">
+  <h1 class="text-3xl font-bold mb-6 text-center" data-i18n="title">Help Us Improve Scheduling for Your Business</h1>
 
-    <label for="tools" data-i18n="q2">Do you use any appointment tools? If not, why?</label>
-    <textarea id="tools" name="tools" required></textarea>
+  <form id="survey-form" class="space-y-6 bg-gray-800 p-6 rounded-xl shadow-lg" action="https://formspree.io/f/meognvye" method="POST">
+    <div>
+      <label class="block mb-2 text-base font-semibold" data-i18n="q1">What type of business do you run?</label>
+      <input type="text" name="business_type" required class="w-full bg-gray-700 border border-gray-600 rounded px-4 py-2 text-white" />
+    </div>
 
-    <label data-i18n="q3">What features do you need the most?</label>
-    <select name="features" multiple>
-      <option value="sms" data-i18n="f_sms">SMS reminders</option>
-      <option value="payment" data-i18n="f_payment">Advance payment (prevent no-shows)</option>
-      <option value="ui" data-i18n="f_ui">Simple UI</option>
-      <option value="pto" data-i18n="f_pto">Staff PTO with auto client rescheduling</option>
-      <option value="price" data-i18n="f_price">Affordable pricing</option>
-    </select>
+    <div>
+      <label class="block mb-2 text-base font-semibold" data-i18n="q4">What’s your biggest frustration with scheduling?</label>
+      <textarea name="frustration" class="w-full bg-gray-700 border border-gray-600 rounded px-4 py-2 text-white"></textarea>
+    </div>
 
-    <label for="frustration" data-i18n="q4">What’s your biggest frustration with scheduling?</label>
-    <textarea id="frustration" name="frustration"></textarea>
+    <div>
+      <label class="block mb-2 text-base font-semibold" data-i18n="q2">Do you use any appointment tools? If not, why?</label>
+      <textarea name="tools" required class="w-full bg-gray-700 border border-gray-600 rounded px-4 py-2 text-white"></textarea>
+    </div>
 
-    <label for="email" data-i18n="q5">Optional: Enter email for a discount & early access</label>
-    <input type="email" id="email" name="email" />
+    <div>
+      <label class="block mb-2 text-base font-semibold" data-i18n="q3">What features do you need the most?</label>
 
-    <button type="submit" data-i18n="submit">Submit</button>
+      <div class="space-y-4">
+
+        <!-- Toggle component -->
+        <div class="flex items-center justify-between">
+          <span data-i18n="f_calendar">Calendar integration (Google Calendar / Outlook)</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="features" value="calendar" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:bg-blue-600 transition-all duration-300"></div>
+            <div class="absolute w-5 h-5 bg-white rounded-full transform peer-checked:translate-x-full transition-transform duration-300 left-0.5 top-0.5"></div>
+          </label>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <span data-i18n="f_sms">SMS reminders</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="features" value="sms" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:bg-blue-600 transition-all duration-300"></div>
+            <div class="absolute w-5 h-5 bg-white rounded-full transform peer-checked:translate-x-full transition-transform duration-300 left-0.5 top-0.5"></div>
+          </label>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <span data-i18n="f_payment">Advance payment (prevent no-shows)</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="features" value="payment" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:bg-blue-600 transition-all duration-300"></div>
+            <div class="absolute w-5 h-5 bg-white rounded-full transform peer-checked:translate-x-full transition-transform duration-300 left-0.5 top-0.5"></div>
+          </label>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <span data-i18n="f_pto">Staff PTO with auto client rescheduling</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="features" value="pto" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:bg-blue-600 transition-all duration-300"></div>
+            <div class="absolute w-5 h-5 bg-white rounded-full transform peer-checked:translate-x-full transition-transform duration-300 left-0.5 top-0.5"></div>
+          </label>
+        </div>
+
+        <div class="flex items-center justify-between">
+          <span data-i18n="f_price">Affordable pricing</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="features" value="price" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:bg-blue-600 transition-all duration-300"></div>
+            <div class="absolute w-5 h-5 bg-white rounded-full transform peer-checked:translate-x-full transition-transform duration-300 left-0.5 top-0.5"></div>
+          </label>
+        </div>
+
+        <!-- Waitlist for Regular Customers -->
+        <div class="flex items-center justify-between">
+          <span data-i18n="f_regular_waitlist">Waitlist / queue for regular customers</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="features" value="regular_waitlist" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:bg-blue-600 transition-all duration-300"></div>
+            <div class="absolute w-5 h-5 bg-white rounded-full transform peer-checked:translate-x-full transition-transform duration-300 left-0.5 top-0.5"></div>
+          </label>
+        </div>
+
+        <!-- Recurring Appointments -->
+        <div class="flex items-center justify-between">
+          <span data-i18n="f_recurring">Recurring appointments</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="features" value="recurring" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:bg-blue-600 transition-all duration-300"></div>
+            <div class="absolute w-5 h-5 bg-white rounded-full transform peer-checked:translate-x-full transition-transform duration-300 left-0.5 top-0.5"></div>
+          </label>
+        </div>
+
+        <!-- Automatic Invoicing -->
+        <div class="flex items-center justify-between">
+          <span data-i18n="f_invoicing">Automatic invoicing / receipts</span>
+          <label class="relative inline-flex items-center cursor-pointer">
+            <input type="checkbox" name="features" value="invoicing" class="sr-only peer">
+            <div class="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:bg-blue-600 transition-all duration-300"></div>
+            <div class="absolute w-5 h-5 bg-white rounded-full transform peer-checked:translate-x-full transition-transform duration-300 left-0.5 top-0.5"></div>
+          </label>
+        </div>
+        <!-- Other input -->
+        <div>
+          <input type="text" name="features_other" placeholder="Other..." class="mt-3 w-full bg-gray-700 border border-gray-600 rounded px-4 py-2 text-white" data-i18n-placeholder="f_other_placeholder" />
+        </div>
+      </div>
+    </div>
+
+
+    <div>
+      <label class="block mb-2 text-base font-semibold" data-i18n="q5">Optional: Enter email for a discount & early access</label>
+      <input type="email" name="email" class="w-full bg-gray-700 border border-gray-600 rounded px-4 py-2 text-white" />
+    </div>
+
+    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 font-semibold py-2 rounded transition" data-i18n="submit">Submit</button>
+    <input type="hidden" name="_subject" value="New scheduling survey submission">
   </form>
 
-  <p id="thanks" style="display:none;" data-i18n="thanks">Thank you! We’ll be in touch soon!</p>
+  <p id="thanks" class="hidden text-center mt-6 text-green-400 text-lg" data-i18n="thanks">Thank you! We’ll be in touch soon!</p>
+</div>
 
-  <script>
-    const translations = {
-      en: {
-        title: "Help Us Improve Scheduling for Your Business",
-        q1: "What type of business do you run?",
-        q2: "Do you use any appointment tools? If not, why?",
-        q3: "What features do you need the most?",
-        q4: "What’s your biggest frustration with scheduling?",
-        q5: "Optional: Enter email for a discount & early access",
-        f_sms: "SMS reminders",
-        f_payment: "Advance payment (prevent no-shows)",
-        f_ui: "Simple UI",
-        f_pto: "Staff PTO with auto client rescheduling",
-        f_price: "Affordable pricing",
-        submit: "Submit",
-        thanks: "Thank you! We’ll be in touch soon!"
-      },
-      pl: {
-        title: "Pomóż nam ulepszyć zarządzanie kalendarzem",
-        q1: "Jaki rodzaj działalności prowadzisz?",
-        q2: "Czy używasz narzędzi do rezerwacji? Jeśli nie, dlaczego?",
-        q3: "Które funkcje są dla Ciebie najważniejsze?",
-        q4: "Co najbardziej frustruje Cię w obecnych rozwiązaniach?",
-        q5: "Opcjonalnie: Podaj e-mail, aby otrzymać zniżkę i wcześniejszy dostęp",
-        f_sms: "SMS przypomnienia",
-        f_payment: "Płatność z góry (brakujące wizyty)",
-        f_ui: "Prosty interfejs",
-        f_pto: "Zarządzanie urlopami z automatycznym powiadomieniem klienta",
-        f_price: "Przystępna cena",
-        submit: "Wyślij",
-        thanks: "Dziękujemy! Skontaktujemy się wkrótce!"
-      }
-    };
+<script>
+  const translations = {
+    en: {
+      title: "Help Us Improve Scheduling for Your Business",
+      q1: "What type of business do you run?",
+      q2: "Do you use any appointment tools? If not, why?",
+      q3: "What features do you need the most?",
+      q4: "What’s your biggest frustration with scheduling?",
+      q5: "Optional: Enter email for a discount & early access",
+      f_sms: "SMS reminders",
+      f_payment: "Advance payment (prevent no-shows)",
+      f_ui: "Simple UI",
+      f_pto: "Staff PTO with auto client rescheduling",
+      f_price: "Affordable pricing",
+      f_calendar: "Calendar integration (Google Calendar / Outlook)",
+      f_booking: "Simple booking management",
+      f_waiting: "Client waiting list (auto-reserve on cancellation)",
+      f_recurring: "Recurring appointments",
+      f_invoicing: "Automatic invoicing / receipts",
+      f_regular_waitlist: "Waitlist / queue for regular customers",
+      f_other_placeholder: "Other...",
+      submit: "Submit",
+      thanks: "Thank you! We’ll be in touch soon!"
+    },
+    pl: {
+      title: "Pomóż nam ulepszyć zarządzanie kalendarzem",
+      q1: "Jaki rodzaj działalności prowadzisz?",
+      q2: "Czy używasz narzędzi do rezerwacji? Jeśli nie, dlaczego?",
+      q3: "Które funkcje są dla Ciebie najważniejsze?",
+      q4: "Co najbardziej frustruje Cię w obecnych rozwiązaniach?",
+      q5: "Opcjonalnie: Podaj e-mail, aby otrzymać zniżkę i wcześniejszy dostęp",
+      f_sms: "SMS przypomnienia",
+      f_payment: "Płatność z góry (brakujące wizyty)",
+      f_ui: "Prosty interfejs",
+      f_pto: "Zarządzanie urlopami z automatycznym powiadomieniem klienta",
+      f_price: "Przystępna cena",
+      f_calendar: "Integracja kalendarza (Google Kalendarz / Outlook)",
+      f_booking: "Proste zarządzanie rezerwacjami",
+      f_waiting: "Lista oczekujących (rezerwacja po anulowaniu)",
+      f_recurring: "Powtarzające się wizyty",
+      f_invoicing: "Automatyczne faktury / potwierdzenia",
+      f_regular_waitlist: "Lista oczekujących / kolejka dla stałych klientów",
+      f_other_placeholder: "Inne...",
+      submit: "Wyślij",
+      thanks: "Dziękujemy! Skontaktujemy się wkrótce!"
+    },
+    de: {
+      title: "Helfen Sie uns, Ihre Terminplanung zu verbessern",
+      q1: "Welche Art von Geschäft führen Sie?",
+      q2: "Verwenden Sie Terminplanungstools? Wenn nicht, warum nicht?",
+      q3: "Welche Funktionen sind für Sie am wichtigsten?",
+      q4: "Was frustriert Sie derzeit bei der Terminplanung?",
+      q5: "Optional: Ihre E-Mail für einen Rabatt & frühen Zugang",
+      f_sms: "SMS-Erinnerungen",
+      f_payment: "Vorauszahlung (verhindert Nichterscheinen)",
+      f_ui: "Einfache Benutzeroberfläche",
+      f_pto: "Mitarbeiterurlaub mit automatischer Kundenbenachrichtigung",
+      f_price: "Erschwinglicher Preis",
+      f_calendar: "Kalenderintegration (Google Kalender / Outlook)",
+      f_booking: "Einfache Terminverwaltung",
+      f_waiting: "Warteliste (automatische Buchung bei Absage)",
+      f_recurring: "Wiederkehrende Termine",
+      f_invoicing: "Automatische Rechnungen / Belege",
+      f_regular_waitlist: "Warteliste / Warteschlange für Stammkunden",
+      f_other_placeholder: "Andere...",
+      submit: "Absenden",
+      thanks: "Danke! Wir melden uns bald bei Ihnen!"
+    }
+  };
 
-    const userLang = (navigator.language || "en").substring(0, 2).toLowerCase();
-    const lang = translations[userLang] ? userLang : "en";
+  const userLang = (navigator.language || "en").substring(0, 2).toLowerCase();
+  const lang = translations[userLang] ? userLang : "en";
 
-    document.querySelectorAll("[data-i18n]").forEach(el => {
-      const key = el.getAttribute("data-i18n");
-      el.textContent = translations[lang][key] || translations["en"][key];
-    });
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const key = el.getAttribute("data-i18n");
+    el.textContent = translations[lang][key] || translations["en"][key];
+  });
 
-    // Basic submit behavior
-    document.getElementById("survey-form").addEventListener("submit", function (e) {
-      e.preventDefault();
-      this.style.display = "none";
-      document.getElementById("thanks").style.display = "block";
-      // TODO: You can hook up to Formspree or another service here
-    });
-  </script>
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    const key = el.getAttribute("data-i18n-placeholder");
+    el.setAttribute("placeholder", translations[lang][key] || translations["en"][key]);
+  });
+
+  document.getElementById("survey-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    this.style.display = "none";
+    document.getElementById("thanks").classList.remove("hidden");
+    // TODO: Connect to Formspree or similar service
+  });
+</script>
 </body>
 </html>
