@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Business Calendar Survey</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 600px; margin: auto; }
+    h1 { font-size: 1.8rem; }
+    label, button { display: block; margin: 1rem 0 0.5rem; }
+    input, textarea, select, button { width: 100%; padding: 0.6rem; font-size: 1rem; }
+    button { background: #2d6cdf; color: white; border: none; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1 data-i18n="title">Help Us Improve Scheduling for Your Business</h1>
+  <form id="survey-form">
+    <label for="business-type" data-i18n="q1">What type of business do you run?</label>
+    <input type="text" id="business-type" name="business_type" required />
+
+    <label for="tools" data-i18n="q2">Do you use any appointment tools? If not, why?</label>
+    <textarea id="tools" name="tools" required></textarea>
+
+    <label data-i18n="q3">What features do you need the most?</label>
+    <select name="features" multiple>
+      <option value="sms" data-i18n="f_sms">SMS reminders</option>
+      <option value="payment" data-i18n="f_payment">Advance payment (prevent no-shows)</option>
+      <option value="ui" data-i18n="f_ui">Simple UI</option>
+      <option value="pto" data-i18n="f_pto">Staff PTO with auto client rescheduling</option>
+      <option value="price" data-i18n="f_price">Affordable pricing</option>
+    </select>
+
+    <label for="frustration" data-i18n="q4">What’s your biggest frustration with scheduling?</label>
+    <textarea id="frustration" name="frustration"></textarea>
+
+    <label for="email" data-i18n="q5">Optional: Enter email for a discount & early access</label>
+    <input type="email" id="email" name="email" />
+
+    <button type="submit" data-i18n="submit">Submit</button>
+  </form>
+
+  <p id="thanks" style="display:none;" data-i18n="thanks">Thank you! We’ll be in touch soon!</p>
+
+  <script>
+    const translations = {
+      en: {
+        title: "Help Us Improve Scheduling for Your Business",
+        q1: "What type of business do you run?",
+        q2: "Do you use any appointment tools? If not, why?",
+        q3: "What features do you need the most?",
+        q4: "What’s your biggest frustration with scheduling?",
+        q5: "Optional: Enter email for a discount & early access",
+        f_sms: "SMS reminders",
+        f_payment: "Advance payment (prevent no-shows)",
+        f_ui: "Simple UI",
+        f_pto: "Staff PTO with auto client rescheduling",
+        f_price: "Affordable pricing",
+        submit: "Submit",
+        thanks: "Thank you! We’ll be in touch soon!"
+      },
+      pl: {
+        title: "Pomóż nam ulepszyć zarządzanie kalendarzem",
+        q1: "Jaki rodzaj działalności prowadzisz?",
+        q2: "Czy używasz narzędzi do rezerwacji? Jeśli nie, dlaczego?",
+        q3: "Które funkcje są dla Ciebie najważniejsze?",
+        q4: "Co najbardziej frustruje Cię w obecnych rozwiązaniach?",
+        q5: "Opcjonalnie: Podaj e-mail, aby otrzymać zniżkę i wcześniejszy dostęp",
+        f_sms: "SMS przypomnienia",
+        f_payment: "Płatność z góry (brakujące wizyty)",
+        f_ui: "Prosty interfejs",
+        f_pto: "Zarządzanie urlopami z automatycznym powiadomieniem klienta",
+        f_price: "Przystępna cena",
+        submit: "Wyślij",
+        thanks: "Dziękujemy! Skontaktujemy się wkrótce!"
+      }
+    };
+
+    const userLang = (navigator.language || "en").substring(0, 2).toLowerCase();
+    const lang = translations[userLang] ? userLang : "en";
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.getAttribute("data-i18n");
+      el.textContent = translations[lang][key] || translations["en"][key];
+    });
+
+    // Basic submit behavior
+    document.getElementById("survey-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      this.style.display = "none";
+      document.getElementById("thanks").style.display = "block";
+      // TODO: You can hook up to Formspree or another service here
+    });
+  </script>
+</body>
+</html>
