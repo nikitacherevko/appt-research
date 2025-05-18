@@ -209,11 +209,19 @@
     el.setAttribute("placeholder", translations[lang][key] || translations["en"][key]);
   });
 
-  document.getElementById("survey-form").addEventListener("submit", function (e) {
+  const form = document.getElementById("survey-form");
+  form.addEventListener("submit", function (e) {
+    const data = new FormData(e.target);
     e.preventDefault();
     this.style.display = "none";
     document.getElementById("thanks").classList.remove("hidden");
-    // TODO: Connect to Formspree or similar service
+    fetch(e.target.action, {
+      method: form.method,
+      body: data,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
   });
 </script>
 </body>
