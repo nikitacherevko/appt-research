@@ -3,12 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title data-i18n="title">Business Scheduling Survey</title>
+  <title data-i18n="title">Appointomat – Feedback</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-900 text-gray-100 min-h-screen p-6 flex items-center justify-center">
+<body class="bg-gray-900 text-gray-100 min-h-screen p-6 flex items-center justify-center font-sans" >
 <div class="w-full max-w-2xl">
   <h1 class="text-3xl font-bold mb-6 text-center" data-i18n="title">Help Us Improve Scheduling for Your Business</h1>
+
+  <!-- Summary Section -->
+  <div class="bg-green-950/40 text-green-100 border-l-4 border-green-500 p-4 rounded-xl mb-6 text-lg font-sans" data-i18n="summary">
+    We’re building a tool that will help you manage bookings more easily, cost-effectively, and with a better experience for your customers.
+  </div>
 
   <form id="survey-form" class="space-y-6 bg-gray-800 p-6 rounded-xl shadow-lg" action="https://formspree.io/f/meognvye" method="POST">
     <div>
@@ -130,6 +147,9 @@
   const translations = {
     en: {
       title: "Help Us Improve Scheduling for Your Business",
+      summary: "We’re building a tool to help you manage bookings more efficiently and cost-effectively — while delivering a great experience to your clients.\n" +
+              "Your input will help us design the app to truly fit your needs, so every answer matters.\n" +
+              "Please take a couple of minutes to fill in the form.",
       q1: "What type of business do you run?",
       q2: "Do you use any appointment tools? If not, why?",
       q3: "What features do you need the most?",
@@ -152,6 +172,9 @@
     },
     pl: {
       title: "Pomóż nam ulepszyć zarządzanie kalendarzem",
+      summary: "Tworzymy narzędzie, które ułatwi Ci zarządzanie rezerwacjami w sposób efektywny i niedrogi — z myślą o lepszym doświadczeniu Twoich klientów.\n" +
+              "Twoje odpowiedzi pomogą nam stworzyć aplikację dopasowaną do rzeczywistych potrzeb.\n" +
+              "Prosimy, poświęć kilka minut na wypełnienie formularza.",
       q1: "Jaki rodzaj działalności prowadzisz?",
       q2: "Czy używasz narzędzi do rezerwacji? Jeśli nie, dlaczego?",
       q3: "Które funkcje są dla Ciebie najważniejsze?",
@@ -174,6 +197,9 @@
     },
     de: {
       title: "Helfen Sie uns, Ihre Terminplanung zu verbessern",
+      summary: "Wir entwickeln ein Tool, das Ihnen eine effizientere und kostengünstigere Verwaltung von Terminen ermöglicht – mit einem besseren Erlebnis für Ihre Kunden.\n" +
+              "Ihre Antworten helfen uns, die App optimal auf Ihre Bedürfnisse zuzuschneiden.\n" +
+              "Bitte nehmen Sie sich ein paar Minuten Zeit, um das Formular auszufüllen.",
       q1: "Welche Art von Geschäft führen Sie?",
       q2: "Verwenden Sie Terminplanungstools? Wenn nicht, warum nicht?",
       q3: "Welche Funktionen sind für Sie am wichtigsten?",
